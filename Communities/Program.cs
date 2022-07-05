@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Communities.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CommunitiesContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CommunitiesContext") ?? throw new InvalidOperationException("Connection string 'CommunitiesContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

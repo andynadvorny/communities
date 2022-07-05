@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Communities.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-3">All Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="col-md-5">
+                @Html.DisplayNameFor(model => model.Bio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.Avatar)" class="rounded" style="object-fit:cover; height: 35px; width: 35px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="text-right">
+    <a 
+        class="btn btn-primary align-bottom btn-circle rounded-circle" 
+        asp-action="Create"
+        style="width: 50px; height: 50px; text-align: center; padding: 10px 13px; font-size: 35px; line-height: 19px;"
+    >
+        +
+    </a>
+</div>

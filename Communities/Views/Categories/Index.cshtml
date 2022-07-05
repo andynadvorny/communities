@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Communities.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-3">Categories</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="col-md-8">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <span class="badge badge-pill badge-primary">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="text-right">
+    <a 
+        class="btn btn-primary align-bottom btn-circle rounded-circle" 
+        asp-action="Create"
+        style="width: 50px; height: 50px; text-align: center; padding: 10px 13px; font-size: 35px; line-height: 19px;"
+    >
+        +
+    </a>
+</div>
